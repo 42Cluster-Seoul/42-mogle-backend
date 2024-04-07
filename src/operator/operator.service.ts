@@ -184,11 +184,11 @@ export class OperatorService {
 	async updateMonthInfoProperty(year: number, month: number) {
 		// get month_info
 		let monthInfo: MonthInfo = await this.dbmanagerService.getMonthInfo(month, year);
-		console.log(`monthInfo: ${JSON.stringify(monthInfo)}`);
+		this.logger.log(`monthInfo: ${JSON.stringify(monthInfo)}`);
 
 		// update total_attendance
 		const countOfThisMonthTotalAttendance: number = await this.dbmanagerService.getCountOfThisMonthTotalAttendance(monthInfo);
-		console.log(`countOfThisMonthTotalAttendance: ${countOfThisMonthTotalAttendance}`);
+		this.logger.log(`countOfThisMonthTotalAttendance: ${countOfThisMonthTotalAttendance}`);
 
 		// update current_attendance
 		const currentDatetime: Date = new Date();
@@ -199,18 +199,18 @@ export class OperatorService {
 		} else {
 			countOfThisMonthCurrentAttendance = countOfThisMonthTotalAttendance;
 		}
-		console.log(`countOfThisMonthCurrentAttendance: ${countOfThisMonthCurrentAttendance}`);
+		this.logger.log(`countOfThisMonthCurrentAttendance: ${countOfThisMonthCurrentAttendance}`);
 
 		// update total_user_count
 		const countOfTotalThisMonthlyUsers: number = await this.dbmanagerService.getCountOfTotalThisMonthlyUsers(monthInfo);
-		console.log(`countOfTotalThisMonthlyUsers: ${countOfTotalThisMonthlyUsers}`);
+		this.logger.log(`countOfTotalThisMonthlyUsers: ${countOfTotalThisMonthlyUsers}`);
 
 		// update perfect_user_count
 		const countOfPerfectThisMonthlyUsers: number = await this.dbmanagerService.getCountOfPerfectThisMonthlyUsers(monthInfo);
-		console.log(`countOfPerfectThisMonthlyUsers: ${countOfPerfectThisMonthlyUsers}`);
+		this.logger.log(`countOfPerfectThisMonthlyUsers: ${countOfPerfectThisMonthlyUsers}`);
 
 		// save updated month_info
-		console.log(`monthInfo(before): ${JSON.stringify(monthInfo)}`);
+		this.logger.log(`monthInfo(before): ${JSON.stringify(monthInfo)}`);
 
 		monthInfo.totalAttendance = countOfThisMonthTotalAttendance;
 		
@@ -233,7 +233,7 @@ export class OperatorService {
 		await this.dbmanagerService.updateMonthInfo(monthInfo);
 		monthInfo = await this.dbmanagerService.getMonthInfo(month, year);
 
-		console.log(`monthInfo(after): ${JSON.stringify(monthInfo)}`);
+		this.logger.log(`monthInfo(after): ${JSON.stringify(monthInfo)}`);
 		return monthInfo;
 	}
 

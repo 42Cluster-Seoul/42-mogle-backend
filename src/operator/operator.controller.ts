@@ -41,9 +41,9 @@ export class OperatorController {
 		@GetUserInfo() userInfo: UserInfo
 		) {
 		this.operatorService.setTodayWord(todayWordDto, userInfo);
-		console.log(`[ PATCH /operator/setTodayWord ] requested.`);
-		console.log(`setTodayWordDto.intraId: [${userInfo.intraId}]`);
-		console.log(`setTodayWordDto.todayWord: [${todayWordDto.todayWord}]`);
+		this.logger.log(`[ PATCH /operator/setTodayWord ] requested.`);
+		this.logger.log(`setTodayWordDto.intraId: [${userInfo.intraId}]`);
+		this.logger.log(`setTodayWordDto.todayWord: [${todayWordDto.todayWord}]`);
 		this.logger.log(`[ PATCH /operator/setTodayWord ] requested.`, JSON.stringify(userInfo.intraId) + ' ' + JSON.stringify(todayWordDto));
 		this.operatorService.setTodayWord(todayWordDto, userInfo);
 	}
@@ -68,11 +68,11 @@ export class OperatorController {
 		@GetUserInfo() userInfo: UserInfo,
 		@Body() updateUserAttendanceDto: UpdateUserAttendanceDto
 		) {
-		console.log(`[ POST /operator/update/user/attendance ] requested.`);
-		console.log(`updateUserAttendanceDto.intraId: [${updateUserAttendanceDto.intraId}]`);
-		console.log(`updateUserAttendanceDto.year: [${updateUserAttendanceDto.year}]`);
-		console.log(`updateUserAttendanceDto.month: [${updateUserAttendanceDto.month}]`);
-		console.log(`updateUserAttendanceDto.day: [${updateUserAttendanceDto.day}]`);
+		this.logger.log(`[ POST /operator/update/user/attendance ] requested.`);
+		this.logger.log(`updateUserAttendanceDto.intraId: [${updateUserAttendanceDto.intraId}]`);
+		this.logger.log(`updateUserAttendanceDto.year: [${updateUserAttendanceDto.year}]`);
+		this.logger.log(`updateUserAttendanceDto.month: [${updateUserAttendanceDto.month}]`);
+		this.logger.log(`updateUserAttendanceDto.day: [${updateUserAttendanceDto.day}]`);
 		this.logger.log(`[ POST /operator/update/user/attendance ] requested.` + userInfo.intraId, JSON.stringify(updateUserAttendanceDto));
 		if (!userInfo.isOperator)
 			return new UnauthorizedException("Not Operator");
